@@ -27,7 +27,7 @@ app.post('/titulo', async (req, res) => {
     });
 
     const $ = cheerio.load(html);
-    const titulo = $('title').text().replace(/ \| Shopee Brasil$/, '').trim();
+    const titulo = $('meta[property="og:title"]').attr('content') || '';
 
     res.json({ titulo });
   } catch (err) {
